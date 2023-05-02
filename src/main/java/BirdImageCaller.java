@@ -20,7 +20,7 @@ public class BirdImageCaller {
         String tags = null;
         while(running) {
             tags = new BirdTagMaker().getBirdNames();
-            String URI = "https://www.flickr.com/services/feeds/photos_public.gne?tags=" + tags + "&tagmode=All&format=json&nojsoncallback=1";
+            String URI = "https://www.flickr.com/services/feeds/photos_public.gne?tags=" + tags + "&tagmode=All&media=photos&format=json&nojsoncallback=1";
             URI = URI.replace(" ", "%20");
 
             try {
@@ -39,19 +39,19 @@ public class BirdImageCaller {
                     throw new RuntimeException("HttpResponseCode: " + responsecode);
                 } else {
 
-                    String inline = "";
+                    StringBuilder inline = new StringBuilder();
                     Scanner scanner = new Scanner(url.openStream());
 
                     //Write all the JSON data into a string using a scanner
                     while (scanner.hasNext()) {
-                        inline += scanner.nextLine();
+                        inline.append(scanner.nextLine());
                     }
 
                     //Close the scanner
                     scanner.close();
 
                     JSONParser parse = new JSONParser();
-                    JSONObject data_obj = (JSONObject) parse.parse(inline);
+                    JSONObject data_obj = (JSONObject) parse.parse(inline.toString());
                     JSONArray itemsObj = (JSONArray) data_obj.get("items");
                     if(itemsObj.size() > 1){
                         JSONObject newObj = (JSONObject) itemsObj.get(1);
@@ -94,19 +94,19 @@ public class BirdImageCaller {
                     throw new RuntimeException("HttpResponseCode: " + responsecode);
                 } else {
 
-                    String inline = "";
+                    StringBuilder inline = new StringBuilder();
                     Scanner scanner = new Scanner(url.openStream());
 
                     //Write all the JSON data into a string using a scanner
                     while (scanner.hasNext()) {
-                        inline += scanner.nextLine();
+                        inline.append(scanner.nextLine());
                     }
 
                     //Close the scanner
                     scanner.close();
 
                     JSONParser parse = new JSONParser();
-                    JSONObject data_obj = (JSONObject) parse.parse(inline);
+                    JSONObject data_obj = (JSONObject) parse.parse(inline.toString());
                     JSONArray itemsObj = (JSONArray) data_obj.get("items");
                     System.out.println(itemsObj.isEmpty());
                     if(!itemsObj.isEmpty()){
