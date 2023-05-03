@@ -24,7 +24,6 @@ public class BirdImageCaller {
             URI = URI.replace(" ", "%20");
 
             try {
-
                 URL url = new URL(URI);
 
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -159,6 +158,8 @@ public class BirdImageCaller {
         }
         return tags;
     }
+
+    // cycle through other bird images of same tags
 
 
     // NEATEN UP

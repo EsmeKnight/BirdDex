@@ -5,7 +5,7 @@ import java.util.stream.Stream;
 
 public class BirdTagMaker {
 
-    private static String apiKey = "sd19d8ma255a";
+    //private static String apiKey = "sd19d8ma255a";
 
     public BirdTagMaker() {
     }
