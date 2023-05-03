@@ -70,6 +70,7 @@ public class BirdImageCaller {
         return tags;
     }
 
+    // get img using entered tags
     public static String getImgUrl(String tags) throws IOException {
 
         boolean running = true;
@@ -134,15 +135,16 @@ public class BirdImageCaller {
         return tags;
     }
 
-    public String getBirdNames() {
+    public String getBirdNames() throws IOException {
         String filename = "C:/Users/esmee/Desktop/BIRDDEX/src/main/java/res/ebird.csv";
 
         long n = 0;
 
-        try (Stream<String> lines = Files.lines(Paths.get(filename))) {
+        try (Stream<String> lines = Files.lines(Paths.get(filename))){
             n = lines.count();
         } catch (IOException e) {
             System.out.println(e);
+            throw e;
         }
 
         System.out.println(n);
@@ -153,6 +155,7 @@ public class BirdImageCaller {
 
         } catch (IOException e) {
             System.out.println(e);
+            throw e;
         }
         return tags;
     }
